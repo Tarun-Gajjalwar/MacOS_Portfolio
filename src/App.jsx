@@ -1,9 +1,10 @@
-import Navbar from "#components/Navbar.jsx";
+import { Navbar, Welcome, Dock, Home } from '#components';
 
 const App = () => {
   return (
     <main>
-      <Navbar/>
+      <Navbar/>2
+      <Welcome/>
     </main>
   )
 }
