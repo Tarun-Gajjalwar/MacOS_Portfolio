@@ -1,14 +1,15 @@
 import dayjs from 'dayjs';
-import { navLinks, navIcons } from '#constants/index.js';
-// import useWindowStore from '@store/window';
+
+import { navLinks, navIcons } from '#constants';
+import useWindowStore from '#store/window';
 
 
 const Navbar = () => {
-    // const { openWindow } = useWindowStore();
+    const { openWindow } = useWindowStore();
     return (
         <nav className='gap-5'>
             <div>
-                <img src="/images/logo.svg" alt="logo"/>
+                <img src="/images/logo.svg" />
                 <p className="font-bold">Tarun's Portfolio</p>
                 <ul>
                     {
@@ -20,7 +21,6 @@ const Navbar = () => {
                     }
                 </ul>
             </div>
-
             <div>
                 <ul>
                     {

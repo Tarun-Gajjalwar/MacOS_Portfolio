@@ -29,7 +29,7 @@ const setupTextHover = (container, type) => {
     // --- FIX STARTS HERE ---
     // We must select the specific config based on the 'type' argument
     const config = FONT_WEIGHT[type];
-    const { min, max, default:base } = config;
+    const { min, max } = config;
     // --- FIX ENDS HERE ---
 
     // animate letters
@@ -51,7 +51,7 @@ const setupTextHover = (container, type) => {
             const distance = Math.abs(mouseX - (l - left + w / 2));
 
             // Create a bell curve intensity (0 to 1)
-            const intensity = Math.exp(-(distance ** 2) / 20000);
+            const intensity = Math.exp(-(distance ** 2) / 2000);
 
             // Calculate new weight
             const newWeight = min + (max - min) * intensity;
@@ -63,7 +63,7 @@ const setupTextHover = (container, type) => {
     // Optional: Reset to default on mouse leave
     const handleMouseLeave = () => {
         letters.forEach((letter) => {
-            animateLetter(letter, config.default, 0.3);
+            animateLetter(letter, config.default, 0.5);
         });
     }
 
