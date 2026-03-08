@@ -102,7 +102,7 @@ const blogPosts = [
 const techStack = [
   {
     category: "Frontend",
-    items: ["React.js", "Html", "CSS", "JavaScript", "ThreeJS", "GSAP"],
+    items: ["React.js", "Html", "CSS", "JavaScript", "ThreeJS",],
   },
   {
     category: "Styling",
@@ -274,12 +274,13 @@ const WORK_LOCATION = {
         },
       ],
     },
+    // project 2
     {
       id: 6,
       name: "3D Fox",
       icon: "/images/folder.png",
       kind: "folder",
-      position: "top-10 left-5", // icon position inside Finder
+      position: "top-10 right-75", // icon position inside Finder
       windowPosition: "top-[20vh] left-7", // optional: Finder window position
       children: [
         {

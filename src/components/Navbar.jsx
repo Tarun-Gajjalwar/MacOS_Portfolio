@@ -1,4 +1,6 @@
 import dayjs from 'dayjs';
+import clsx from "clsx";
+import { useState, useEffect, useRef } from "react";
 
 import { navLinks, navIcons } from '#constants';
 import useWindowStore from '#store/window';
@@ -6,6 +8,33 @@ import useWindowStore from '#store/window';
 
 const Navbar = () => {
     const { openWindow } = useWindowStore();
+    const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+    const audioElementRef = useRef(null);
+
+
+    const toggleAudioIndicator = () => {
+    setIsAudioPlaying((prev) => !prev);
+    };
+
+    useEffect(() => {
+        if (!audioElementRef.current) return;
+
+        if (isAudioPlaying) {
+            audioElementRef.current.play().catch(() => {});
+        } else {
+            audioElementRef.current.pause();
+        }
+    }, [isAudioPlaying]);
+
+
+//  useEffect(() => {
+//     if (isAudioPlaying) {
+//       audioElementRef.current.play();
+//     } else {
+//       audioElementRef.current.pause();
+//     }
+//   }, [isAudioPlaying]);
+
     return (
         <nav className='gap-5'>
             <div>
@@ -32,6 +61,31 @@ const Navbar = () => {
                     }
                 </ul>
                 <time>{dayjs().format("ddd MMM D | h:mm A")}</time>
+                
+                <button
+                    onClick={toggleAudioIndicator}
+                    className="flex items-center space-x-0.5 cursor-pointer"
+                    >
+                    <audio
+                        ref={audioElementRef}
+                        className="hidden"
+                        src="/audio/Paradise.mp3"
+                        loop
+                    />
+
+                    {[1, 2, 3, 4].map((bar) => (
+                        <div
+                        key={bar}
+                        className={clsx("indicator-line", {
+                            active: isAudioPlaying,
+                        })}
+                        style={{
+                            animationDelay: `${bar * 0.1}s`,
+                        }}
+                        />
+                    ))}
+                </button>
+
             </div>
         </nav>
     )
